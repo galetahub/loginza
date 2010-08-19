@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{loginza}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Igor Galeta"]
@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{loginza}
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Rails plugin for open API user login/creation}
+  s.summary = %q{Rails plugin for openID authentication by service Loginza.API}
   s.test_files = [
     "test/loginza_test.rb",
      "test/test_helper.rb"
