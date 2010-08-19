@@ -1,0 +1,59 @@
+= Loginza
+
+Loginza - is interactive JavaScript widget provides visitors to your sites, 
+a wide range of options for authentication through the accounts of common WEB-portals and 
+service (Yandex, Google, and TA. See full list <http://loginza.ru/features-and-benefits # providers>). 
+Easy to learn Loginza.API <http://loginza.ru/api-overview> and the availability of ready-made 
+solutions in PHP and ASP can easily and skills to give your visitors the possibility of 
+authentication by Yandex, Google, Rambler, OpenID <http://ru.wikipedia.org/wiki/OpenID> and 
+other providers authorization <http://loginza.ru/features-and-benefits#providers>.
+
+== Install
+
+Via rails plugin:
+
+  rails plugin install git://github.com/galetahub/loginza.git
+
+Via rails gem:
+  
+  sudo gem install loginza
+
+== Usage
+
+=== View
+
+Simple example:
+  
+  <%= loginza_button_tag("Login via OpenID", clients_path) %>
+ 
+With set of providers:
+  
+  <%= loginza_button_tag("Login via OpenID", clients_path, :providers => [ :google, :facebook, :twitter ]) %>
+    
+With default provider:
+  
+  <%= loginza_button_tag("Login via OpenID", clients_path, :provider => :google) %>
+
+With a block:
+
+  <%= loginza_button_tag(clients_path, :provider => :google) do %>
+   <div class='loginza'>
+     ...
+   </div>
+  <% end %>
+
+=== Controller
+
+  class ClientsController < ApplicationController
+  
+    def create
+      if data = Loginza.user_data(params[:token])
+        client = Client.find_or_create(data)
+        redirect_to root_path
+      else
+        redirect_to login_path
+      end
+    end    
+    
+  end
+Copyright (c) 2010 Brainberry, released under the MIT license
