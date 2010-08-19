@@ -8,16 +8,16 @@ module Loginza
     # Loginza button
     #
     # Simple example:
-    #   <%= loginza_button_tag("Login via OpenID", clients_path) %>
+    #   <%= loginza_button_tag("Login via OpenID", clients_url) %>
     # 
     # With set of providers:
-    #   <%= loginza_button_tag("Login via OpenID", clients_path, :providers => [ :google, :facebook, :twitter ]) %>
+    #   <%= loginza_button_tag("Login via OpenID", clients_url, :providers => [ :google, :facebook, :twitter ]) %>
     #
     # With default provider:
-    #   <%= loginza_button_tag("Login via OpenID", clients_path, :provider => :google) %>
+    #   <%= loginza_button_tag("Login via OpenID", clients_url, :provider => :google) %>
     #
     # With a block:
-    #   <%= loginza_button_tag(clients_path, :provider => :google) do %>
+    #   <%= loginza_button_tag(clients_url, :provider => :google) do %>
     #     <div class='loginza'>
     #       ...
     #     </div>
