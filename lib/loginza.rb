@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'loginza/railtie'
+
 module Loginza
   autoload :ViewHelper, 'loginza/view_helper'
   autoload :Api,        'loginza/api'
@@ -21,8 +23,7 @@ module Loginza
   def self.auth_info(token, options = {})
     Api.call('authinfo', options.merge(:token => token))
   end
-  
-  
+    
   class ServerError < RuntimeError; end
   class ApiError < ServerError; end
   class ServiceUnavailableError < ServerError; end
