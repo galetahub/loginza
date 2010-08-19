@@ -2,11 +2,8 @@
 
 Loginza - is interactive JavaScript widget provides visitors to your sites, 
 a wide range of options for authentication through the accounts of common WEB-portals and 
-service (Yandex, Google, and TA. See full list <http://loginza.ru/features-and-benefits # providers>). 
-Easy to learn Loginza.API <http://loginza.ru/api-overview> and the availability of ready-made 
-solutions in PHP and ASP can easily and skills to give your visitors the possibility of 
-authentication by Yandex, Google, Rambler, OpenID <http://ru.wikipedia.org/wiki/OpenID> and 
-other providers authorization <http://loginza.ru/features-and-benefits#providers>.
+service (Yandex, Google, and TA. See full list {providers}[http://loginza.ru/features-and-benefits]). 
+Easy to learn {Loginza.API}[http://loginza.ru/api-overview].
 
 == Install
 
@@ -56,7 +53,7 @@ With a block:
 
 ==== Frame
 
-  loginza_frame_tag(clients_url, { :providers => [:google, :yandex, :mailru] }, { :style => "width:400px;height:350px;" }) 
+  <%= loginza_frame_tag(clients_url, { :providers => [:google, :yandex, :mailru] }, { :style => "width:400px;height:350px;" }) %>
 
 
 === Controller

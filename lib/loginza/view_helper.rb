@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 module Loginza
   module ViewHelper
     include ActionView::Helpers::AssetTagHelper
@@ -54,18 +53,16 @@ module Loginza
     #
     # Simple example:
     #
-    #   loginza_frame_tag(clients_url, { :providers => [:google, :yandex, :mailru] }, { :style => "width:400px;height:350px;" }) 
+    #   <%= loginza_frame_tag(clients_url, { :providers => [:google, :yandex, :mailru] }, { :style => "width:400px;height:350px;" }) %>
     #
     def loginza_frame_tag(callback_url, options = {}, html_options = {})
-      url = Utils.generate_url(callback_url, options, { :overlay => 'loginza' })
-      
       html_options = { 
         :scrolling => "no",
         :frameborder => "no",
         :style => "width:359px;height:300px;",
       }.merge(html_options)
       
-      html_options[:src] = url
+      html_options[:src] = Utils.generate_url(callback_url, options, { :overlay => 'loginza' })
       
       content_tag(:iframe, nil, html_options)
     end
