@@ -33,5 +33,19 @@ module Loginza
         String.new
       end
     end
+    
+    def self.generate_url(callback_url, options = {}, params = {})
+      params[:token_url] = ::Rack::Utils.escape(callback_url)
+      
+      if options[:providers]
+        params[:providers_set] = options.delete(:providers).map(&:to_s).join(',')
+      else
+        params[:provider] = options.delete(:provider)
+      end
+      
+      query = ::Rack::Utils.build_query(params)
+      
+      "https://loginza.ru/api/widget?#{query}"
+    end
   end
 end

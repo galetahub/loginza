@@ -28,6 +28,8 @@ Via rails gem:
 
 === View
 
+==== Link
+
 Simple example:
   
   <%= loginza_button_tag("Login via OpenID", clients_url) %>
@@ -44,9 +46,18 @@ With a block:
 
   <%= loginza_button_tag(clients_url, :provider => :google) do %>
    <div class='loginza'>
-     ...
+     <img src="http://loginza.ru/img/providers/google.png" alt="Google" title="Google Accounts">
+     <img src="http://loginza.ru/img/providers/twitter.png" alt="Twitter" title="Twitter">
+     <img src="http://loginza.ru/img/providers/yandex.png" alt="Yandex" title="Yandex">
+     <img src="http://loginza.ru/img/providers/myopenid.png" alt="MyOpenID" title="MyOpenID">
+     <img src="http://loginza.ru/img/providers/openid.png" alt="OpenID" title="OpenID">
    </div>
   <% end %>
+
+==== Frame
+
+  loginza_frame_tag(clients_url, { :providers => [:google, :yandex, :mailru] }, { :style => "width:400px;height:350px;" }) 
+
 
 === Controller
 

@@ -3,6 +3,7 @@
 module Loginza
   module ViewHelper
     include ActionView::Helpers::AssetTagHelper
+    include ActionView::Helpers::TagHelper
     include ActionView::Helpers::UrlHelper
     
     # Loginza button
@@ -37,24 +38,36 @@ module Loginza
         name         = args[0]
         callback_url = args[1]
         options      = args[2] || {}
-        html_options = args[3]
+        html_options = args[3] || {}
                   
-        params = { :token_url => ::Rack::Utils.escape(callback_url) }
-        
-        if options[:providers]
-          params[:providers_set] = options.delete(:providers).map(&:to_s).join(',')
-        else
-          params[:provider] = options.delete(:provider)
-        end
-        
-        query = ::Rack::Utils.build_query(params)
-        url = "https://loginza.ru/api/widget?#{query}"
+        html_options[:class] ||= "loginza"
+        url = Utils.generate_url(callback_url, options)
         
         html = Utils.new_safe_buffer
         html << javascript_include_tag("http://s1.loginza.ru/js/widget.js")
         html << link_to(name, url, options, html_options)
         html
       end
+    end
+    
+    # Loginza frame
+    #
+    # Simple example:
+    #
+    #   loginza_frame_tag(clients_url, { :providers => [:google, :yandex, :mailru] }, { :style => "width:400px;height:350px;" }) 
+    #
+    def loginza_frame_tag(callback_url, options = {}, html_options = {})
+      url = Utils.generate_url(callback_url, options, { :overlay => 'loginza' })
+      
+      html_options = { 
+        :scrolling => "no",
+        :frameborder => "no",
+        :style => "width:359px;height:300px;",
+      }.merge(html_options)
+      
+      html_options[:src] = url
+      
+      content_tag(:iframe, nil, html_options)
     end
   end
 end
