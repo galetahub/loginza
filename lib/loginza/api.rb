@@ -29,7 +29,7 @@ module Loginza
         end
 
         def request_object(path, data)
-          request = Net::HTTP::Post.new(path)
+          request = Net::HTTP::Post.new("#{path}?token=#{data.delete(:token)}")
           request.form_data = stringify_keys(data)
           request
         end
@@ -42,7 +42,7 @@ module Loginza
         end
 
         def client
-          client = Net::HTTP.new(uri.host, 80)
+          client = Net::HTTP.new(uri.host, uri.port)
           client
         end
 
