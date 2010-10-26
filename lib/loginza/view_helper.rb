@@ -32,7 +32,7 @@ module Loginza
         options      = args.second || {}
         html_options = args.third
         
-        concat(loginza_button_tag(capture(&block), callback_url,  options, html_options))
+        loginza_button_tag(capture(&block), callback_url,  options, html_options)
       else
         name         = args[0]
         callback_url = args[1]
