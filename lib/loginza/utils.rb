@@ -35,7 +35,8 @@ module Loginza
     end
     
     def self.generate_url(callback_url, options = {}, params = {})
-      params[:token_url] = ::Rack::Utils.escape(callback_url)
+      params[:token_url] = callback_url
+      params[:lang] ||= ::I18n.locale.to_s
       
       if options[:providers]
         params[:providers_set] = options.delete(:providers).map(&:to_s).join(',')
