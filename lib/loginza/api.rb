@@ -50,7 +50,14 @@ module Loginza
           if response.code.to_i >= 400
             raise ServiceUnavailableError, "The Loginza service is temporarily unavailable. (4XX)"
           else
-            result = Utils.parse_json(response.body)
+            begin
+              result = Utils.parse_json(response.body)
+            rescue Exception => e
+              ::Rails.logger.info("Error parse: #{response.body}")
+              ::Rails.logger.error(e)
+              return
+            end
+            
             return result unless result['error_type']
             
             raise ApiError, "Got error: #{result['error_message']} (error_type: #{result['error_type']}), HTTP status: #{response.code}"
