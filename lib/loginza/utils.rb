@@ -38,14 +38,11 @@ module Loginza
       params[:token_url] = callback_url
       params[:lang] ||= ::I18n.locale.to_s
       
-      if options[:providers]
-        params[:providers_set] = options.delete(:providers).map(&:to_s).join(',')
-      else
-        params[:provider] = options.delete(:provider)
-      end
+      providers = options[:providers] ? options.delete(:providers).map(&:to_s).join(',') : options.delete(:provider)
       
       query = ::Rack::Utils.build_query(params)
-      
+      query += "&providers_set=#{providers}"
+
       "https://loginza.ru/api/widget?#{query}"
     end
   end
