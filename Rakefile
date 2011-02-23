@@ -35,6 +35,8 @@ begin
     gemspec.authors = ["Igor Galeta"]
     gemspec.files = FileList["[A-Z]*", "{lib,rails}/**/*"]
     gemspec.rubyforge_project = "loginza"
+    
+    gemspec.add_dependency('json', '>= 1.5.1')
   end
   
   Jeweler::GemcutterTasks.new

@@ -1,22 +1,14 @@
 # encoding: utf-8
-require 'json' unless Object.const_defined?('ActiveSupport')
+require 'json'
 
 module Loginza
   module Utils
     def self.turn_into_json(data)
-      if Object.const_defined?('ActiveSupport')
-        ActiveSupport::JSON.encode(data)
-      else
-        JSON.generate(data)
-      end
+      JSON.generate(data)
     end
     
     def self.parse_json(data)
-      if Object.const_defined?('ActiveSupport')
-        ActiveSupport::JSON.decode(data)
-      else
-        JSON.parse(data)
-      end
+      JSON.parse(data)
     end
     
     def self.parse_query(value, spliter = '&')
