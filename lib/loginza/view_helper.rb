@@ -40,7 +40,7 @@ module Loginza
         html_options = args[3] || {}
                   
         html_options[:class] ||= "loginza"
-        without_js = html_options.delete(:without_js) 
+        without_js = options.delete(:without_js) 
 
         url = Utils.generate_url(callback_url, options)
         
