@@ -40,10 +40,12 @@ module Loginza
         html_options = args[3] || {}
                   
         html_options[:class] ||= "loginza"
+        without_js = html_options.delete(:without_js) 
+
         url = Utils.generate_url(callback_url, options)
         
         html = Utils.new_safe_buffer
-        html << javascript_include_tag("http://s1.loginza.ru/js/widget.js")
+        html << javascript_include_tag("http://s1.loginza.ru/js/widget.js") unless without_js
         html << link_to(name, url, options, html_options)
         html
       end
