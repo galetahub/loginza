@@ -11,7 +11,7 @@ Via rails plugin:
 
 Rails 3:
 
-  rails plugin install git://github.com/galetahub/loginza.git
+  gem 'loginza'
 
 Rails 2:
   
@@ -70,4 +70,5 @@ With a block:
     end    
     
   end
-Copyright (c) 2010 Brainberry, released under the MIT license
+  
+Copyright (c) 2011 Aimbulance, released under the MIT license
